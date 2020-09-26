@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "QQPlugin.h"
+#import "TKQQPluginConfig.h"
+#import "TKAutoReplyModel.h"
+#import "TKMsgManager.h"
 
 @interface QQHelperSetting : NSObject
 
@@ -18,10 +22,11 @@
 @property (nonatomic, assign) BOOL isEnableRedPacket;
 @property (nonatomic, assign) BOOL isHideRedDetailWindow;
 @property (nonatomic, assign) BOOL isMessageRevoke;
+//@property (nonatomic, assign) BOOL isMessageReply;
 @property (nonatomic, assign) BOOL isPersonRedPackage;
 
-@property (nonatomic, assign) NSInteger startTime;
-@property (nonatomic, assign) NSInteger endTime;
+@property (nonatomic, assign) int startTime;
+@property (nonatomic, assign) int endTime;
 
 @property (nonatomic, strong) NSNumber * msgRandom;
 
@@ -45,4 +50,8 @@
 - (BOOL)keywordContainer:(NSString *)redPackKeyword;
 - (BOOL)groupSessionIdContainer:(NSInteger)sessionId;
 
+- (NSString *)getUinByMessageModel:(BHMessageModel *)msgModel;
+- (NSArray *)msgContentsFromMessageModel:(BHMessageModel *)model;
+- (void)autoReplyWithMsg:(BHMessageModel *)msgModel;
+- (void)sendTextMessage:(NSString *)msg uin:(long long)uin sessionType:(int)type delay:(NSInteger)delayTime;
 @end
